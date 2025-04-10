@@ -2,10 +2,10 @@ install:
 	uv sync
 
 lint:
-	uv run ruff check brain_games
+	uv run ruff check .
 
 fix_lint:
-	uv run ruff check --fix brain_games
+	uv run ruff check --fix .
 
 build:
 	uv build
