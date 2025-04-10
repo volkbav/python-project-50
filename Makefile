@@ -7,4 +7,12 @@ lint:
 fix_lint:
 	uv run ruff check --fix brain_games
 
-.PHONY: install lint fix_lint
+build:
+	uv build
+
+package-install:
+	uv tool install --force dist/*.whl
+
+upgrade: build package-install
+
+.PHONY: install lint fix_lint build package-install upgrade
