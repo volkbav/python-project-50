@@ -1,7 +1,8 @@
-import gendiff.engine 
+import gendiff.engine as engine
 
 def main():
-  engine.parse_args()
+  args = engine.parse_args()
+  print(args)
 
 if __name__ == "__main__":
     main()
