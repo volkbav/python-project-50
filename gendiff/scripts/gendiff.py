@@ -1,5 +1,7 @@
+from gendiff.engine *
+
 def main():
-    None
+    parse_args()
 
 if __name__ == "__main__":
     main()
