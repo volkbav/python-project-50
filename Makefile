@@ -15,4 +15,7 @@ package-install:
 
 upgrade: build package-install
 
-.PHONY: install lint fix_lint build package-install upgrade
+run:
+	uv run gendiff --help
+
+.PHONY: install lint fix_lint build package-install upgrade run
