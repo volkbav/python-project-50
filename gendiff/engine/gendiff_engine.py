@@ -8,4 +8,3 @@ def parse_args():
     parser.add_argument('first_file', help='Path to the first file')
     parser.add_argument('second_file', help='Path to the second file')
     return parser.parse_args()
-
