@@ -11,7 +11,7 @@ You will need:
 ```
 make install
 ```
-5. install games
+5. install
 ```
 make package-install
 ```
