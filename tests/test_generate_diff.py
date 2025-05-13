@@ -9,6 +9,6 @@ def test_step3():
         f'\n---test_step3---\n'
         f'file1: \n {first_file_content}\n',
         f'file2: \n {second_file_content}\n',
-        f'---test_step3---\n'
+        '---test_step3---\n'
           )
 
