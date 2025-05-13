@@ -24,9 +24,10 @@ def parse_json(file_path):
     
 def gendiff():
     args = parse_args()
-    print(args)
+#    print(args)
 #    print(ARGS.first_file)
 #    print(ARGS.second_file)
+
     first_file_content = parse_json(args.first_file)
     second_file_content = parse_json(args.second_file)
     print(f'file1: \n {first_file_content}')
