@@ -1,8 +1,8 @@
-import gendiff.engine as engine
+import gendiff.core as core
 
 
 def main():
-  engine.gendiff()
+  core.gendiff()
 
 if __name__ == "__main__":
     main()
