@@ -21,4 +21,7 @@ help:
 run:
 	uv run gendiff ./gendiff/files/file1.json ./gendiff/files/file2.json
 
-.PHONY: install lint fix_lint build package-install upgrade help run
+test:
+	uv run pytest
+
+.PHONY: install lint fix_lint build package-install upgrade help run test
