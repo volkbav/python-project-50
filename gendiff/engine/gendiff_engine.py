@@ -1,5 +1,10 @@
 import argparse
+import json
 
+
+def gendiff():
+    print(ARGS.first_file)
+    print(ARGS.second_file)
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -14,3 +19,15 @@ def parse_args():
     )
     
     return parser.parse_args()
+
+ARGS = parse_args()
+
+def parse_json(file_path):
+    with open(file_path, 'r') as file:
+        content = json.loads(file)
+        return content
+    
+def gendiff():
+    print(ARGS)
+    print(ARGS.first_file)
+    print(ARGS.second_file)

@@ -1,4 +1,4 @@
-from .gendiff_engine import parse_args
+from .gendiff_engine import gendiff
 
 
-__all__ = ['parse_args']
+__all__ = ['gendiff']
