@@ -15,3 +15,7 @@ make install
 ```
 make package-install
 ```
+6. tests
+```
+make test
+```
