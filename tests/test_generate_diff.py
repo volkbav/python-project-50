@@ -1,7 +1,7 @@
 from gendiff import generate_diff
 
 def test_step3():
-    first_file_content, second_file_content = generate_diff(
+    first_file_content, second_file_content, _ = generate_diff(
         'tests/fixtures/file1.json',
         'tests/fixtures/file2.json'
         )
@@ -12,3 +12,13 @@ def test_step3():
         '---test_step3---\n'
           )
 
+def test_step4():
+    _, _, diff = generate_diff(
+        'tests/fixtures/file1.json',
+        'tests/fixtures/file2.json'
+        )
+    print(
+        '\n---test_step4---\n',
+        f'diff: \n {diff}\n',
+        '---test_step4---\n'
+        )
