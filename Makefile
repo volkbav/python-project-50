@@ -19,7 +19,7 @@ help:
 	uv run gendiff --help
 
 run:
-	uv run gendiff ./gendiff/files/file1.json ./gendiff/files/file2.json
+	uv run gendiff ./tests/fixtures/file1.json ./tests/fixtures/file2.json
 
 test:
 	uv run pytest -s
