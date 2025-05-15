@@ -6,7 +6,7 @@ def main():
   diff = generate_diff(
      args.first_file, args.second_file, args.format
      )
-  print(f'diff: \n {diff}')
+  print(f'diff: \n{diff}')
 
 if __name__ == "__main__":
     main()
