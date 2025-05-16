@@ -19,9 +19,9 @@ help:
 	uv run gendiff --help
 
 run:
-	uv run gendiff ./tests/fixtures/file1.json ./tests/fixtures/file2.json
+	uv run gendiff ./tests/test_data/file1.json ./tests/test_data/file2.json
 
 test:
-	uv run pytest -s
+	uv run pytest -svv
 
 .PHONY: install lint fix_lint build package-install upgrade help run test
