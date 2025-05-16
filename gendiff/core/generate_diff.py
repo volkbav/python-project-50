@@ -1,5 +1,6 @@
 from gendiff.core.parse import parse_json
 
+
 def generate_diff(file_path1, file_path2, format=None):
     first_file_content = parse_json(file_path1)
     second_file_content = parse_json(file_path2)
@@ -38,6 +39,7 @@ def make_diff(file_data1, file_data2):
             }
     return diff
             
+
 def flat(tree):
     result = '{'
     for key, value in tree.items():
