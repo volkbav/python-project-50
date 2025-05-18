@@ -13,7 +13,5 @@ def test_generate_diff():
         expected_result = file.read()
     result = generate_diff(file_path1, file_path2)
 
-    print(result)
- #   print(expected_result)
     assert result == expected_result
     

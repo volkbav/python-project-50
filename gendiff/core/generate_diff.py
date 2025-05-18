@@ -52,24 +52,32 @@ def flat(tree):
     for key, value in tree.items():
         if value['status'] == 'removed':
             result += (
-                f'\n  - {key} : {value['value']}'
+                f'\n  - {key}: {json_style_format(value["value"])}'
             )
         elif value['status'] == 'unchanged':
             result += (
-                f'\n    {key} : {value['value']}'
+                f'\n    {key}: {json_style_format(value["value"])}'
             )
         elif value['status'] == 'changed':
             result += (
-                f'\n  - {key} : {value['old_value']}'
+                f'\n  - {key}: {json_style_format(value["old_value"])}'
             )
             result += (
-                f'\n  + {key} : {value['new_value']}'
+                f'\n  + {key}: {json_style_format(value["new_value"])}'
             )
         elif value['status'] == 'added':
             result += (
-                f'\n  + {key} : {value['value']}'
+                f'\n  + {key}: {json_style_format(value["value"])}'
             )
     result += '\n}'
     return result
 
 
+def json_style_format(value):
+    if isinstance(value, bool):
+        return str(value).lower()
+    elif value is None:
+        return 'null'
+    elif isinstance(value, str):
+        return value
+    return str(value)
