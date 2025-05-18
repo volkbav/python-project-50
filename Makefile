@@ -24,4 +24,7 @@ run:
 test:
 	uv run pytest -svv
 
-.PHONY: install lint fix_lint build package-install upgrade help run test
+test-coverage:
+	uv run pytest --cov
+
+.PHONY: install lint fix_lint build package-install upgrade help run test test-coverage
