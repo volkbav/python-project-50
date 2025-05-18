@@ -1,5 +1,5 @@
 ### Hexlet tests and linter status:
-[![Actions Status](https://github.com/volkbav/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/volkbav/python-project-50/actions)
+[![Actions Status](https://github.com/volkbav/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/volkbav/python-project-50/actions) [![Test Gendiff](https://github.com/volkbav/python-project-50/actions/workflows/test_gendiff.yml/badge.svg)](https://github.com/volkbav/python-project-50/actions/workflows/test_gendiff.yml)
 
 # demo
 [![asciicast](https://asciinema.org/a/EMojoDu2gVXMtpPXREJhaS9ml.svg)](https://asciinema.org/a/EMojoDu2gVXMtpPXREJhaS9ml)
