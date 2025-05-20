@@ -2,8 +2,8 @@ from gendiff.core.parser import parse
 
 
 def generate_diff(file_path1, file_path2, format=None):
-    data1 = parse(file_path1)
-    data2 = parse(file_path2)
+    data1 = parse(file_path1.lower())
+    data2 = parse(file_path2.lower())
     diff_tree = make_diff(data1, data2)
     result = flat(diff_tree)
     return result
