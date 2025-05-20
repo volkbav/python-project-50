@@ -3,7 +3,6 @@ import json
 
 def generate_diff(file_path1, file_path2, format=None):
     first_file_content = parse_json(file_path1)
-    print(first_file_content)
     second_file_content = parse_json(file_path2)
     diff_tree = make_diff(first_file_content, second_file_content)
     result = flat(diff_tree)
