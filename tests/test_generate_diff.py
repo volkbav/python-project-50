@@ -8,7 +8,7 @@ def test_generate_diff():
     file_path1 = os.path.join(current_dir, 'test_data', 'file1.json')
     file_path2 = os.path.join(current_dir, 'test_data', 'file2.json')
     with open(os.path.join(
-        current_dir, 'test_data', 'expected1_2.txt'), 'r'
+        current_dir, 'test_data', 'expected_flat.txt'), 'r'
         ) as file:
         expected_result = file.read()
     result = generate_diff(file_path1, file_path2)
