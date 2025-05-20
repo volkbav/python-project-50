@@ -25,6 +25,6 @@ test:
 	uv run pytest -svv
 
 test-coverage:
-	uv run pytest --cov
+	uv run pytest --cov=gendiff --cov-report=xml
 
 .PHONY: install lint fix_lint build package-install upgrade help run test test-coverage
