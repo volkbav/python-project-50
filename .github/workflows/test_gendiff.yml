@@ -32,4 +32,5 @@ jobs:
           args: >
             -Dsonar.projectKey=volkbav_python-project-50
             -Dsonar.organization=volkbav
+            -Dsonar.sources=gendiff
             -Dsonar.python.coverage.reportPaths=coverage.xml
