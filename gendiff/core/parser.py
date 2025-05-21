@@ -4,7 +4,7 @@ import yaml
 
 
 def parse(file_path):
-    ext = file_path.split('.')[-1].lower()
+    ext = file_path.split('.')[-1]
     if ext == 'json':
         return parse_json(file_path)
     elif ext in ('yml', 'yaml'):
