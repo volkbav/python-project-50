@@ -45,7 +45,7 @@ def make_diff(data1, data2):
                 'value': data2[key]
             }
     return diff
-            
+
 
 def flat(tree):
     result = '{'
