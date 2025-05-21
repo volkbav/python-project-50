@@ -27,7 +27,12 @@ from gendiff.core.generate_diff import generate_diff
             'test_data/file1.json',
             'test_data/file1.json',
             'test_data/no_change.txt' 
-            )
+            ),
+        (  # test big files
+            'test_data/big_file1.json',
+            'test_data/big_file2.json',
+            'test_data/expected_big.txt' 
+            ),  
     ]
 )
 def test_generate_diff(file1, file2, expected):
