@@ -20,6 +20,8 @@ help:
 
 run:
 	uv run gendiff ./tests/test_data/file1.json ./tests/test_data/file2.json
+	uv run gendiff ./tests/test_data/big_file1.json ./tests/test_data/big_file2.json
+	uv run gendiff ./tests/test_data/big_file1.yml ./tests/test_data/big_file2.yml
 
 test:
 	uv run pytest -svv
