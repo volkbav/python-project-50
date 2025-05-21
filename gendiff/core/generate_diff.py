@@ -16,33 +16,33 @@ def generate_diff(file_path1, file_path2, format=None):
     return result
 
 
-def make_diff(file_data1, file_data2):
+def make_diff(data1, data2):
     diff = {}
-    keys1 = set(file_data1.keys())
-    keys2 = set(file_data2.keys())
+    keys1 = set(data1.keys())
+    keys2 = set(data2.keys())
     all_keys = sorted(keys1.union(keys2))
     for key in all_keys:
         if key in keys1 and key not in keys2:
             diff[key] = {
                 'status': 'removed',
-                'value': file_data1[key]
+                'value': data1[key]
             }
         elif key in keys1 and key in keys2:
-            if file_data1[key] == file_data2[key]:
+            if data1[key] == data2[key]:
                 diff[key] = {
                     'status': 'unchanged',
-                    'value': file_data1[key]
+                    'value': data1[key]
                     }
             else:
                 diff[key] = {
                     'status': 'changed',
-                    'old_value': file_data1[key],
-                    'new_value': file_data2[key]
+                    'old_value': data1[key],
+                    'new_value': data2[key]
                 }
         elif key not in keys1 and key in keys2:
             diff[key] = {
                 'status': 'added',
-                'value': file_data2[key]
+                'value': data2[key]
             }
     return diff
             
