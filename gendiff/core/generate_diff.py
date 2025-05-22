@@ -2,6 +2,9 @@ from gendiff.core.parser import parse
 
 #import pprint
 
+INDENT_STEP = 4
+
+
 def generate_diff(file_path1, file_path2, format='stylish'):
     data1 = parse(file_path1)
     data2 = parse(file_path2)
@@ -57,10 +60,9 @@ def make_diff(data1, data2):
 
 
 def format_stylish(tree, depth=1):
-    INDENT_STEP = 4
     lines = []
     indent = ' ' * INDENT_STEP * depth
-    sing_indent = ' ' * (INDENT_STEP * depth - 2)
+    sign_indent = ' ' * (INDENT_STEP * depth - 2)
     closing_indent = ' ' * ((depth - 1) * INDENT_STEP)
 
     for key, node in tree.items():
@@ -71,22 +73,22 @@ def format_stylish(tree, depth=1):
             )
         elif node['status'] == 'removed':
             lines.append(
-                f'{sing_indent}- {key}: {style_format(node["value"])}'
+                f'{sign_indent}- {key}: {style_format(node["value"], depth)}'
             )
         elif node['status'] == 'unchanged':
             lines.append(
-                f'{indent}{key}: {style_format(node["value"])}'
+                f'{indent}{key}: {style_format(node["value"], depth)}'
             )
         elif node['status'] == 'changed':
             lines.append(
-                f'{sing_indent}- {key}: {style_format(node["old_value"])}'
+                f'{sign_indent}- {key}: {style_format(node["old_value"], depth)}'
             )
             lines.append(
-                f'{sing_indent}+ {key}: {style_format(node["new_value"])}'
+                f'{sign_indent}+ {key}: {style_format(node["new_value"], depth)}'
             )
         elif node['status'] == 'added':
             lines.append(
-                f'{sing_indent}+ {key}: {style_format(node["value"])}'
+                f'{sign_indent}+ {key}: {style_format(node["value"], depth)}'
             )
 
     result = (
@@ -95,12 +97,18 @@ def format_stylish(tree, depth=1):
     return result
 
 
-def style_format(value):
-    if isinstance(value, bool):
+def style_format(value, depth=1):
+    INDENT_STEP = 4
+    if isinstance(value, dict):
+        indent = ' ' * INDENT_STEP * (depth + 1)
+        closing_indent = ' ' * INDENT_STEP * depth
+        lines = []
+        for k, v in value.items():
+            lines.append(f'{indent}{k}: {style_format(v, depth + 1)}')
+        return '{{\n{}\n{}}}'.format('\n'.join(lines), closing_indent)
+    elif isinstance(value, bool):
         return str(value).lower()
     elif value is None:
         return 'null'
-    elif isinstance(value, str):
-        return value
     return str(value)
-#    return json.dumps(value).strip(f'"')
+
