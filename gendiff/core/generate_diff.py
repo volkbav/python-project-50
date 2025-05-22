@@ -1,17 +1,17 @@
 from gendiff.core.parser import parse
 
-import pprint
+#import pprint
 
-def generate_diff(file_path1, file_path2, format=None):
-    data1 = parse(file_path1.lower())
-    data2 = parse(file_path2.lower())
+def generate_diff(file_path1, file_path2, format='stylish'):
+    data1 = parse(file_path1)
+    data2 = parse(file_path2)
     diff_tree = make_diff(data1, data2)
-    result = flat(diff_tree)
+    result = format_stylish(diff_tree)
 # Begin to remove
-    print(f'file1\n')
-    pprint.pprint(data1)
-    print(f'file2\n')
-    pprint.pprint(data2) 
+#    print(f'file1\n')
+#    pprint.pprint(data1)
+#    print(f'file2\n')
+#    pprint.pprint(data2) 
 # End to remove
     return result
 
@@ -53,39 +53,49 @@ def make_diff(data1, data2):
                     'new_value': value2
                 }
 
-    print(f'---diff---')
-    pprint.pprint(diff)
-    print('---')
     return diff
 
 
-def flat(tree):
-    result = '{'
-    for key, value in tree.items():
-        if value['status'] == 'removed':
-            result += (
-                f'\n  - {key}: {json_style_format(value["value"])}'
+def format_stylish(tree, depth=1):
+    INDENT_STEP = 4
+    lines = []
+    indent = ' ' * INDENT_STEP * depth
+    sing_indent = ' ' * (INDENT_STEP * depth - 2)
+    closing_indent = ' ' * ((depth - 1) * INDENT_STEP)
+
+    for key, node in tree.items():
+        if node['status'] == 'nest':
+            children = format_stylish(node["children"], depth + 1)
+            lines.append(
+                f'{indent}{key}: {children}'
             )
-        elif value['status'] == 'unchanged':
-            result += (
-                f'\n    {key}: {json_style_format(value["value"])}'
+        elif node['status'] == 'removed':
+            lines.append(
+                f'{sing_indent}- {key}: {style_format(node["value"])}'
             )
-        elif value['status'] == 'changed':
-            result += (
-                f'\n  - {key}: {json_style_format(value["old_value"])}'
+        elif node['status'] == 'unchanged':
+            lines.append(
+                f'{indent}{key}: {style_format(node["value"])}'
             )
-            result += (
-                f'\n  + {key}: {json_style_format(value["new_value"])}'
+        elif node['status'] == 'changed':
+            lines.append(
+                f'{sing_indent}- {key}: {style_format(node["old_value"])}'
             )
-        elif value['status'] == 'added':
-            result += (
-                f'\n  + {key}: {json_style_format(value["value"])}'
+            lines.append(
+                f'{sing_indent}+ {key}: {style_format(node["new_value"])}'
             )
-    result += '\n}'
+        elif node['status'] == 'added':
+            lines.append(
+                f'{sing_indent}+ {key}: {style_format(node["value"])}'
+            )
+
+    result = (
+        '{\n' + '\n'.join(lines) + '\n' + f'{closing_indent}' + '}'
+    )
     return result
 
 
-def json_style_format(value):
+def style_format(value):
     if isinstance(value, bool):
         return str(value).lower()
     elif value is None:
@@ -93,3 +103,4 @@ def json_style_format(value):
     elif isinstance(value, str):
         return value
     return str(value)
+#    return json.dumps(value).strip(f'"')
