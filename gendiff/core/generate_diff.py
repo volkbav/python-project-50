@@ -1,6 +1,6 @@
 from gendiff.core.parser import parse
 
-# import pprint
+
 
 INDENT_STEP = 4
 
@@ -14,10 +14,14 @@ def generate_diff(file1, file2, format_name='stylish'):
     else:
         return 'wrong format'
 # Begin to remove
+    import pprint
 #    print(f'file1\n')
 #    pprint.pprint(data1)
 #    print(f'file2\n')
 #    pprint.pprint(data2) 
+    print('tree')
+    pprint.pprint(diff_tree)
+    return None
 # End to remove
     return result
 
