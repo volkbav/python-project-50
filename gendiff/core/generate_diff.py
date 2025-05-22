@@ -22,28 +22,40 @@ def make_diff(data1, data2):
     keys2 = set(data2.keys())
     all_keys = sorted(keys1.union(keys2))
     for key in all_keys:
+        value1 = data1.get(key)
+        value2 = data2.get(key)
+
         if key in keys1 and key not in keys2:
             diff[key] = {
                 'status': 'removed',
-                'value': data1[key]
+                'value': value1
+            }
+        elif key not in keys1 and key in keys2:
+            diff[key] = {
+                'status': 'added',
+                'value': value2
+            }
+        elif isinstance(value1, dict) and isinstance(value2,dict):
+            diff[key] = {
+                'status': 'nest',
+                'children': make_diff(value1, value2)
             }
         elif key in keys1 and key in keys2:
             if data1[key] == data2[key]:
                 diff[key] = {
                     'status': 'unchanged',
-                    'value': data1[key]
+                    'value': value1
                     }
             else:
                 diff[key] = {
                     'status': 'changed',
-                    'old_value': data1[key],
-                    'new_value': data2[key]
+                    'old_value': value1,
+                    'new_value': value2
                 }
-        elif key not in keys1 and key in keys2:
-            diff[key] = {
-                'status': 'added',
-                'value': data2[key]
-            }
+
+    print(f'---diff---')
+    pprint.pprint(diff)
+    print('---')
     return diff
 
 
