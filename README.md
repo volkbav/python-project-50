@@ -4,8 +4,10 @@
 # demo
 ## help
 [![asciicast](https://asciinema.org/a/EMojoDu2gVXMtpPXREJhaS9ml.svg)](https://asciinema.org/a/EMojoDu2gVXMtpPXREJhaS9ml)
-## flat
+## stylish flat file
 [![asciicast](https://asciinema.org/a/FtjhzXaZmHMsX0rlfK1t5p93T.svg)](https://asciinema.org/a/FtjhzXaZmHMsX0rlfK1t5p93T)
+## stylish recursive file
+[![asciicast](https://asciinema.org/a/RWQNJdwC1vYBOZmu2eBSMPTB3.svg)](https://asciinema.org/a/RWQNJdwC1vYBOZmu2eBSMPTB3)
 
 # Installation
 You will need:
