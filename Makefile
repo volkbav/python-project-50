@@ -25,7 +25,7 @@ run-json:
 	uv run gendiff ./tests/test_data/big_file1.json ./tests/test_data/big_file2.json
 
 run-yml:
-	uv run gendiff ./tests/test_data/big_file1.yml ./tests/test_data/big_file2.yml
+	uv run gendiff ./tests/test_data/big_file1.yml ./tests/test_data/big_file2.yml -f stylish
 
 test:
 	uv run pytest -svv
