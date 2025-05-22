@@ -1,6 +1,6 @@
 from gendiff.core.parser import parse
 
-#import pprint
+# import pprint
 
 INDENT_STEP = 4
 
@@ -38,7 +38,7 @@ def make_diff(data1, data2):
                 'status': 'added',
                 'value': value2
             }
-        elif isinstance(value1, dict) and isinstance(value2,dict):
+        elif isinstance(value1, dict) and isinstance(value2, dict):
             diff[key] = {
                 'status': 'nest',
                 'children': make_diff(value1, value2)
@@ -81,14 +81,20 @@ def format_stylish(tree, depth=1):
             )
         elif node['status'] == 'changed':
             lines.append(
-                f'{sign_indent}- {key}: {style_format(node["old_value"], depth)}'
+                f'{sign_indent}- {key}: {
+                    style_format(node["old_value"], depth)
+                    }'
             )
             lines.append(
-                f'{sign_indent}+ {key}: {style_format(node["new_value"], depth)}'
+                f'{sign_indent}+ {key}: {
+                    style_format(node["new_value"], depth)
+                    }'
             )
         elif node['status'] == 'added':
             lines.append(
-                f'{sign_indent}+ {key}: {style_format(node["value"], depth)}'
+                f'{sign_indent}+ {key}: {
+                    style_format(node["value"], depth)
+                    }'
             )
 
     result = (
