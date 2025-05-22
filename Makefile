@@ -18,9 +18,13 @@ upgrade: build package-install
 help:
 	uv run gendiff --help
 
-run:
+run-flat:
 	uv run gendiff ./tests/test_data/file1.json ./tests/test_data/file2.json
+
+run-json:
 	uv run gendiff ./tests/test_data/big_file1.json ./tests/test_data/big_file2.json
+
+run-yml:
 	uv run gendiff ./tests/test_data/big_file1.yml ./tests/test_data/big_file2.yml
 
 test:
@@ -29,4 +33,4 @@ test:
 test-coverage:
 	uv run pytest --cov=gendiff --cov-report=xml
 
-.PHONY: install lint fix_lint build package-install upgrade help run test test-coverage
+.PHONY: install lint fix_lint build package-install upgrade help run-flat test test-coverage run-yml run-json
