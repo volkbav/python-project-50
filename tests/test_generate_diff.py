@@ -12,7 +12,7 @@ from gendiff.core.generate_diff import generate_diff
             'test_data/file1.json',
             'test_data/file2.json',
             'test_data/expected_flat.txt',
-            None               
+            None 
         ),
         (  # test yml flat
             'test_data/file1.yml',

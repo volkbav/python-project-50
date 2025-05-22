@@ -9,7 +9,7 @@ def generate_diff(file1, file2, format_name='stylish'):
     data1 = parse(file1)
     data2 = parse(file2)
     diff_tree = make_diff(data1, data2)
-    if format_name == None or format_name == 'stylish':
+    if format_name in (None, 'stylish'):
         result = stylish(diff_tree)
     else:
         return 'wrong format'
