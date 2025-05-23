@@ -68,7 +68,7 @@ from gendiff.core.generate_diff import generate_diff
             'test_data/file2.yaml',
             'test_data/expected_plain.txt',
             'plain' 
-            ),            
+            ), 
     ]
 )
 def test_generate_diff(file1, file2, expected, format_name):
