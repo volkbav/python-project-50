@@ -34,15 +34,21 @@ from gendiff.core.generate_diff import generate_diff
             'stylish' 
             ),
         (  # stylish json
-            'test_data/big_file1.json',
-            'test_data/big_file2.json',
-            'test_data/expected_big.txt',
+            'test_data/file1.json',
+            'test_data/file2.json',
+            'test_data/expected_stylish.txt',
             'stylish' 
             ), 
         (  # stylish yml
-            'test_data/big_file1.yml',
-            'test_data/big_file2.yml',
-            'test_data/expected_big.txt',
+            'test_data/file1.yml',
+            'test_data/file2.yml',
+            'test_data/expected_stylish.txt',
+            'stylish' 
+            ),
+        (  # stylish yaml
+            'test_data/file1.yaml',
+            'test_data/file2.yaml',
+            'test_data/expected_stylish.txt',
             'stylish' 
             ),
     ]

@@ -19,13 +19,13 @@ help:
 	uv run gendiff --help
 
 run-flat:
-	uv run gendiff ./tests/test_data/file1.json ./tests/test_data/file2.json
+	uv run gendiff ./tests/test_data/flat/file1.json ./tests/test_data/flat/file2.json
 
 run-json:
-	uv run gendiff ./tests/test_data/big_file1.json ./tests/test_data/big_file2.json
+	uv run gendiff ./tests/test_data/file1.json ./tests/test_data/file2.json
 
 run-yml:
-	uv run gendiff ./tests/test_data/big_file1.yml ./tests/test_data/big_file2.yml -f stylish
+	uv run gendiff ./tests/test_data/file1.yml ./tests/test_data/file2.yml -f stylish
 
 test:
 	uv run pytest -svv
