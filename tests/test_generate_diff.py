@@ -8,38 +8,38 @@ from gendiff.core.generate_diff import generate_diff
 @pytest.mark.parametrize(
     'file1, file2, expected, format_name',
     [
-        (  # test json flat
-            'test_data/file1.json',
-            'test_data/file2.json',
+        (  # flat no format
+            'test_data/flat/file1.json',
+            'test_data/flat/file2.json',
             'test_data/expected_flat.txt',
             None 
         ),
-        (  # test yml flat
-            'test_data/file1.yml',
-            'test_data/file2.yml',
+        (  # flat stylish yml
+            'test_data/flat/file1.yml',
+            'test_data/flat/file2.yml',
             'test_data/expected_flat.txt',
             'stylish'
 
         ),
-        (  # test yaml flat
-            'test_data/file1.yaml',
-            'test_data/file2.yaml',
+        (  # flat stylish yaml
+            'test_data/flat/file1.yaml',
+            'test_data/flat/file2.yaml',
             'test_data/expected_flat.txt',
             'stylish'    
         ),
-        (  # test no changes flat
-            'test_data/file1.json',
-            'test_data/file1.json',
+        (  # flat no changes stylish
+            'test_data/flat/file1.json',
+            'test_data/flat/file1.json',
             'test_data/no_change.txt',
             'stylish' 
             ),
-        (  # test big files
+        (  # stylish json
             'test_data/big_file1.json',
             'test_data/big_file2.json',
             'test_data/expected_big.txt',
             'stylish' 
             ), 
-        (  # test big files
+        (  # stylish yml
             'test_data/big_file1.yml',
             'test_data/big_file2.yml',
             'test_data/expected_big.txt',

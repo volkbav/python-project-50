@@ -21,7 +21,7 @@ def generate_diff(file1, file2, format_name='stylish'):
 #    pprint.pprint(data2) 
     print('tree')
     pprint.pprint(diff_tree)
-    return None
+#    return None
 # End to remove
     return result
 
@@ -117,9 +117,26 @@ def stylish_format(value, depth=1):
         for k, v in value.items():
             lines.append(f'{indent}{k}: {stylish_format(v, depth + 1)}')
         return '{{\n{}\n{}}}'.format('\n'.join(lines), closing_indent)
-    elif isinstance(value, bool):
+    return formater(value)
+
+def formater(value):
+    if isinstance(value, bool):
         return str(value).lower()
     elif value is None:
         return 'null'
     return str(value)
 
+
+def plain(tree):
+    lines = []
+    for key, node in tree.items():
+        if node['status'] == 'nest':
+            pass
+        elif node['status'] == 'removed':
+            pass
+        elif node['status'] == 'unchanged':
+            pass
+        elif node['status'] == 'changed':
+            pass
+        elif node['status'] == 'added':
+            pass
