@@ -79,27 +79,27 @@ def stylish(tree, depth=1):
                 )
         elif node['status'] == 'removed':
             lines.append(
-                f'{sign_indent}- {key}: {style_format(node["value"], depth)}'
+                f'{sign_indent}- {key}: {stylish_format(node["value"], depth)}'
                 )
         elif node['status'] == 'unchanged':
             lines.append(
-                f'{indent}{key}: {style_format(node["value"], depth)}'
+                f'{indent}{key}: {stylish_format(node["value"], depth)}'
                 )
         elif node['status'] == 'changed':
             lines.append(
                 f'{sign_indent}- {key}: {
-                    style_format(node["old_value"], depth)
+                    stylish_format(node["old_value"], depth)
                     }'
                 )
             lines.append(
                 f'{sign_indent}+ {key}: {
-                    style_format(node["new_value"], depth)
+                    stylish_format(node["new_value"], depth)
                     }'
                 )
         elif node['status'] == 'added':
             lines.append(
                 f'{sign_indent}+ {key}: {
-                    style_format(node["value"], depth)
+                    stylish_format(node["value"], depth)
                     }'
                 )
     result = (
@@ -108,14 +108,14 @@ def stylish(tree, depth=1):
     return result
 
 
-def style_format(value, depth=1):
+def stylish_format(value, depth=1):
     INDENT_STEP = 4
     if isinstance(value, dict):
         indent = ' ' * INDENT_STEP * (depth + 1)
         closing_indent = ' ' * INDENT_STEP * depth
         lines = []
         for k, v in value.items():
-            lines.append(f'{indent}{k}: {style_format(v, depth + 1)}')
+            lines.append(f'{indent}{k}: {stylish_format(v, depth + 1)}')
         return '{{\n{}\n{}}}'.format('\n'.join(lines), closing_indent)
     elif isinstance(value, bool):
         return str(value).lower()
