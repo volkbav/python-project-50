@@ -8,6 +8,8 @@
 [![asciicast](https://asciinema.org/a/FtjhzXaZmHMsX0rlfK1t5p93T.svg)](https://asciinema.org/a/FtjhzXaZmHMsX0rlfK1t5p93T)
 ## stylish recursive file
 [![asciicast](https://asciinema.org/a/RWQNJdwC1vYBOZmu2eBSMPTB3.svg)](https://asciinema.org/a/RWQNJdwC1vYBOZmu2eBSMPTB3)
+## plain recursive file
+[![asciicast](https://asciinema.org/a/dp3CAqc6Fz4c8VhkK2l58gbs9.svg)](https://asciinema.org/a/dp3CAqc6Fz4c8VhkK2l58gbs9)
 
 # Installation
 You will need:
