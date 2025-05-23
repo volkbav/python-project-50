@@ -131,6 +131,7 @@ def formater(value):
 
 def plain(tree):
     lines = []
+    path = ''
     for key, node in tree.items():
         if node['status'] == 'nest':
             pass
