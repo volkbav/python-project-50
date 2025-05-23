@@ -1,5 +1,5 @@
 from gendiff.core.parser import parse
-
+# import pprint
 
 
 INDENT_STEP = 4
@@ -16,14 +16,14 @@ def generate_diff(file1, file2, format_name='stylish'):
     else:
         return 'wrong format'
 # Begin to remove
-    import pprint
+    
 #    print(f'file1\n')
 #    pprint.pprint(data1)
 #    print(f'file2\n')
 #    pprint.pprint(data2) 
-#    print('tree')
+#    print('---tree---')
 #    pprint.pprint(diff_tree)
-#    return None
+ #   return None
 # End to remove
     return result
 
@@ -89,20 +89,14 @@ def stylish(tree, depth=1):
             )
         elif node['status'] == 'changed':
             lines.append(
-                f'{sign_indent}- {key}: {
-                    stylish_format(node["old_value"], depth)
-                    }'
+                f'{sign_indent}- {key}: {stylish_format(node["old_value"], depth)}'
             )
             lines.append(
-                f'{sign_indent}+ {key}: {
-                    stylish_format(node["new_value"], depth)
-                    }'
+                f'{sign_indent}+ {key}: {stylish_format(node["new_value"], depth)}'
             )
         elif node['status'] == 'added':
             lines.append(
-                f'{sign_indent}+ {key}: {
-                    stylish_format(node["value"], depth)
-                    }'
+                f'{sign_indent}+ {key}: {stylish_format(node["value"], depth)}'
             )
     result = (
         '{\n' + '\n'.join(lines) + '\n' + f'{closing_indent}' + '}'
@@ -126,27 +120,43 @@ def formater(value):
         return str(value).lower()
     elif value is None:
         return 'null'
+    elif isinstance(value, str):
+        return value
     return str(value)
 
 
-def plain(tree):
+def plain(tree, parent=''):
     lines = []
-    path = ''
     for key, node in tree.items():
-        if node['status'] == 'nest':
-            pass
-        elif node['status'] == 'removed':
+        full_key = f"{parent}{key}"
+        status = node.get('status')
+        
+        if status == "nest":
+            children = node.get('children')
+            lines.extend(plain(children, f'{full_key}.').split('\n'))
+
+        elif status == 'added':
+            value = format_plain_value(node.get('value'))
+            lines.append(f"Property '{full_key}' was added with value: {value}")
+        elif status == 'removed':
+            lines.append(f"Property '{full_key}' was removed")
+        elif status == 'changed':
+            old_value = format_plain_value(node.get('old_value'))
+            new_value = format_plain_value(node.get('new_value'))
             lines.append(
-                f'Property ' + "'" + f'{key}' + "'" + f' was removed'
+                f"Property '{full_key}' was updated. From {old_value} to {new_value}"
             )
-        elif node['status'] == 'unchanged':
-            pass
-        elif node['status'] == 'changed':
-            lines.append(
-                f'Property ' + "'" + f'{key}' + "'" + f' was updated. From' + " '" + f'{formater(node["old_value"])}' + "'" + ' to ' + f'{formater(node["new_value"])}'
-            )
-        elif node['status'] == 'added':
-            lines.append(
-                f'Property ' + "'" + f'{key}' + "'" + f' was added with value:' + " '" + f'{formater(node["value"])}' + "'"
-            )
-    return '\n'.join(lines)
+
+    return '\n'.join(filter(None, lines))
+
+
+def format_plain_value(val):
+    if isinstance(val, dict):
+        return "[complex value]"
+    elif isinstance(val, bool):
+        return str(val).lower()
+    elif val is None:
+        return "null"
+    elif isinstance(val, str):
+        return f"'{val}'"
+    return str(val)
