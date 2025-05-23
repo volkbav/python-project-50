@@ -11,6 +11,8 @@ def generate_diff(file1, file2, format_name='stylish'):
     diff_tree = make_diff(data1, data2)
     if format_name in (None, 'stylish'):
         result = stylish(diff_tree)
+    elif format_name == 'plain':
+        result = plain(diff_tree)
     else:
         return 'wrong format'
 # Begin to remove
@@ -19,8 +21,8 @@ def generate_diff(file1, file2, format_name='stylish'):
 #    pprint.pprint(data1)
 #    print(f'file2\n')
 #    pprint.pprint(data2) 
-    print('tree')
-    pprint.pprint(diff_tree)
+#    print('tree')
+#    pprint.pprint(diff_tree)
 #    return None
 # End to remove
     return result
@@ -76,35 +78,35 @@ def stylish(tree, depth=1):
             children = stylish(node["children"], depth + 1)
             lines.append(
                 f'{indent}{key}: {children}'
-                )
+            )
         elif node['status'] == 'removed':
             lines.append(
                 f'{sign_indent}- {key}: {stylish_format(node["value"], depth)}'
-                )
+            )
         elif node['status'] == 'unchanged':
             lines.append(
                 f'{indent}{key}: {stylish_format(node["value"], depth)}'
-                )
+            )
         elif node['status'] == 'changed':
             lines.append(
                 f'{sign_indent}- {key}: {
                     stylish_format(node["old_value"], depth)
                     }'
-                )
+            )
             lines.append(
                 f'{sign_indent}+ {key}: {
                     stylish_format(node["new_value"], depth)
                     }'
-                )
+            )
         elif node['status'] == 'added':
             lines.append(
                 f'{sign_indent}+ {key}: {
                     stylish_format(node["value"], depth)
                     }'
-                )
+            )
     result = (
         '{\n' + '\n'.join(lines) + '\n' + f'{closing_indent}' + '}'
-        )
+    )
     return result
 
 
@@ -133,10 +135,17 @@ def plain(tree):
         if node['status'] == 'nest':
             pass
         elif node['status'] == 'removed':
-            pass
+            lines.append(
+                f'Property ' + "'" + f'{key}' + "'" + f' was removed'
+            )
         elif node['status'] == 'unchanged':
             pass
         elif node['status'] == 'changed':
-            pass
+            lines.append(
+                f'Property ' + "'" + f'{key}' + "'" + f' was updated. From' + " '" + f'{formater(node["old_value"])}' + "'" + ' to ' + f'{formater(node["new_value"])}'
+            )
         elif node['status'] == 'added':
-            pass
+            lines.append(
+                f'Property ' + "'" + f'{key}' + "'" + f' was added with value:' + " '" + f'{formater(node["value"])}' + "'"
+            )
+    return '\n'.join(lines)
