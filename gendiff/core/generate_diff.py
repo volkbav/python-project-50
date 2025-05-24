@@ -1,5 +1,6 @@
 from .formatters.plain import plain
 from .formatters.stylish import stylish
+from .formatters.json import json_format
 from .parser import parse
 
 
@@ -11,6 +12,8 @@ def generate_diff(file1, file2, format_name='stylish'):
         result = stylish(diff_tree)
     elif format_name == 'plain':
         result = plain(diff_tree)
+    elif format_name == 'json':
+        result = json_format(diff_tree)
     else:
         return 'wrong format'
     return result
