@@ -70,7 +70,13 @@ from gendiff.core import generate_diff
             'test_data/file2.yaml',
             'test_data/expected_plain.txt',
             'plain' 
-            ), 
+            ),
+        (  # json
+            'test_data/file1.json',
+            'test_data/file2.json',
+            'test_data/expected_diff.json',
+            'json' 
+            )
     ]
 )
 def test_generate_diff(file1, file2, expected, format_name):
@@ -83,4 +89,8 @@ def test_generate_diff(file1, file2, expected, format_name):
     result = generate_diff(path1, path2, format_name)
 
     assert result == expected_result
+
+
+        
     
+
