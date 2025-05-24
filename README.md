@@ -11,6 +11,9 @@
 ## plain recursive file
 [![asciicast](https://asciinema.org/a/dp3CAqc6Fz4c8VhkK2l58gbs9.svg)](https://asciinema.org/a/dp3CAqc6Fz4c8VhkK2l58gbs9)
 
+## json recursive file
+[![asciicast](https://asciinema.org/a/QX8QmMlCTp4BfFUfCv5vOolMC.svg)](https://asciinema.org/a/QX8QmMlCTp4BfFUfCv5vOolMC)
+
 # Installation
 You will need:
 1. install uv package manager.
