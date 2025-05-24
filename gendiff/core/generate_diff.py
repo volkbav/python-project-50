@@ -1,6 +1,6 @@
+from .formatters.json import json_format
 from .formatters.plain import plain
 from .formatters.stylish import stylish
-from .formatters.json import json_format
 from .parser import parse
 
 
