@@ -9,7 +9,8 @@ def main():
         args.second_file, 
         args.format
         )
-    print(f'diff: \n{diff}')
+#    print(f'diff: \n{diff}')
+    print(f'{diff}')
 
 
 if __name__ == "__main__":
